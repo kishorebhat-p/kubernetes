@@ -1614,6 +1614,7 @@ function start-kube-apiserver {
   params+=" --service-account-issuer=${SERVICEACCOUNT_ISSUER}"
   params+=" --service-account-api-audiences=${SERVICEACCOUNT_ISSUER}"
   params+=" --service-account-signing-key-file=${SERVICEACCOUNT_KEY_PATH}"
+  params+=" --encryption-provider-config=${ENCRYPTION_PROVIDER_CONFIG_PATH}"
 
   local audit_policy_config_mount=""
   local audit_policy_config_volume=""
@@ -1869,7 +1870,7 @@ function start-kube-apiserver {
 # ENCRYPTION_PROVIDER_CONFIG_PATH (will default to /etc/srv/kubernetes/encryption-provider-config.yml)
 function setup-etcd-encryption {
   local kube_apiserver_template_path
-  local -n kube_api_server_params
+  local kube_api_server_params
   local default_encryption_provider_config_vol
   local default_encryption_provider_config_vol_mnt
   local encryption_provider_config_vol_mnt
